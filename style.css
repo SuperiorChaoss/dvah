@@ -1401,6 +1401,34 @@ h1, .section-title {
 @keyframes slideInRTL { to { width: 100%; } }
 @keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
 
+.cta-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.cta-section p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  background-color: #ff69b4;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
 .navbar .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,\
 %3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E\
@@ -1408,3 +1436,4 @@ h1, .section-title {
 stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E\
 %3C/svg%3E") !important;
 }
+
