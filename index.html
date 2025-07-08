@@ -485,22 +485,6 @@
 
   <!-- Bootstrap JS Bundle (with Popper) -->
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const overlay = document.getElementById('loading-overlay');
-  if (!overlay) return;
-
-  // Wait for the next paint, then fade out:
-  requestAnimationFrame(() => {
-    overlay.classList.add('fade-out');
-  });
-
-  // Once fade‐out finishes, drop it from the DOM:
-  overlay.addEventListener('animationend', e => {
-    if (e.animationName === 'fadeOutOverlay') {
-      overlay.remove();
-    }
-  });
-});
       // Date picker
   flatpickr("#date-input", {
     altInput: true,
@@ -598,6 +582,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const timerInterval = setInterval(updateCountdown, 1000);
   updateCountdown();
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('loading-overlay');
+  if (!overlay) return;
+
+  // 1. Minimum time to show the curtain (in ms)
+  const MIN_TIME = 800;
+  const start = performance.now();
+
+  // 2. Preload the hero background
+  const heroBg = getComputedStyle(document.getElementById('hero')).backgroundImage
+                    .match(/url\(["']?(.+?)["']?\)/)[1];
+  const img = new Image();
+  img.src = heroBg;
+
+  // 3. Once hero image loads (or errors), remove overlay after MIN_TIME has elapsed
+  img.onload = img.onerror = () => {
+    const elapsed = performance.now() - start;
+    const wait = Math.max(0, MIN_TIME - elapsed);
+
+    setTimeout(() => {
+      overlay.classList.add('fade-out');
+      overlay.addEventListener('animationend', () => overlay.remove());
+    }, wait);
+  };
+});
 </script>
 
 </body>
