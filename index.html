@@ -11,6 +11,10 @@
   <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
   <!-- Flatpickr JS -->
+   <link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="prefetch" href="booking.html" as="document">
+
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
@@ -371,7 +375,7 @@
     <div class="about-content text-white">
       <h2 class="section-title">About Us</h2>
       <p>
-        Welcome to <strong>Dvah's Dollhouse</strong>. We are a team of certified beauticians dedicated to helping you look your absolute best. No maetter why you are here, you’re in expert hands. Our mission is to deliver a luxurious, personalized experience in a warm and welcoming atmosphere—where style truly meets self-care.
+        Welcome to <strong>D'vahs Dollhouse</strong>. We are a team of certified beauticians dedicated to helping you look your absolute best. No maetter why you are here, you’re in expert hands. Our mission is to deliver a luxurious, personalized experience in a warm and welcoming atmosphere—where style truly meets self-care.
       </p>
       <div class="mt-4">
         <a href="booking.html" class="btn-book">Book with Us</a>
@@ -481,17 +485,22 @@
 
   <!-- Bootstrap JS Bundle (with Popper) -->
   <script>
-    window.addEventListener('load', () => {
-      const overlay = document.getElementById('loading-overlay');
-      if (!overlay) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('loading-overlay');
+  if (!overlay) return;
 
-      // Wait for 3 seconds (animation duration) before starting the fade-out
-      setTimeout(() => {
-        overlay.classList.add('fade-out');
-        // After the 0.5s fade-out completes, remove the overlay element
-        setTimeout(() => overlay.remove(), 500);
-      }, 2000);
-    });
+  // Wait for the next paint, then fade out:
+  requestAnimationFrame(() => {
+    overlay.classList.add('fade-out');
+  });
+
+  // Once fade‐out finishes, drop it from the DOM:
+  overlay.addEventListener('animationend', e => {
+    if (e.animationName === 'fadeOutOverlay') {
+      overlay.remove();
+    }
+  });
+});
       // Date picker
   flatpickr("#date-input", {
     altInput: true,

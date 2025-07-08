@@ -1386,3 +1386,17 @@ h1, .section-title {
     font-size: 1.5rem;
   }
 }
+.loading-line.top {
+  animation: slideInLTR 1.5s ease-out forwards;
+}
+.loading-line.bottom {
+  animation: slideInRTL 1.5s ease-out forwards;
+}
+
+#loading-overlay.fade-out {
+  animation: fadeOutOverlay 0.3s ease-in forwards;
+}
+
+@keyframes slideInLTR { to { width: 100%; } }
+@keyframes slideInRTL { to { width: 100%; } }
+@keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
