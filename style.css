@@ -1394,7 +1394,7 @@ h1, .section-title {
 }
 
 #loading-overlay.fade-out {
-  animation: fadeOutOverlay 0.3s ease-in forwards;
+  animation: fadeOutOverlay 1.5s ease-in forwards;
 }
 
 @keyframes slideInLTR { to { width: 100%; } }
